@@ -23,11 +23,11 @@ const PostGrid: React.FC<PostGridProps> = ({ posts }) => {
   return (
     <Grid role="list">
       {currentList.map(data => {
-        const { id, slug, title, desc, date, category, thumbnail, alt } = data
+        const { id, slug, title, desc, date, category, thumbnail, alt, url } = data
         const ariaLabel = `${title} - ${category} - Posted on ${date}`
         return (
           <List key={id} role="listitem">
-            <Link to={slug ?? ""} aria-label={ariaLabel}>
+            <Link to={url ?? slug ?? ""} aria-label={ariaLabel}>
               <Card
                 thumbnail={thumbnail}
                 alt={alt}
@@ -85,7 +85,7 @@ const List = styled.li`
   }
 
   @media (max-width: ${({ theme }) => theme.device.sm}) {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 `
 

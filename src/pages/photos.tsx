@@ -18,9 +18,10 @@ const Photos = ({
   // `images` is an array of objects with `thumb` and `full`
   return (
     <Layout>
-      <SEO title="Blog" />
+      <SEO title="Pictures" />
       <Main>
         <Content>
+          {/* TODO: Look into adding infinite scroll */}
           <Gallery images={images as any} />
         </Content>
       </Main>

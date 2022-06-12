@@ -7,5 +7,6 @@ export default interface Post
   > {
   id: string
   slug: MarkdownRemarkFields["slug"]
+  url?: string
   thumbnail?: string
 }

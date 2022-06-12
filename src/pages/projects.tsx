@@ -11,7 +11,7 @@ import SEO from "Components/seo"
 import PostGrid from "Components/postGrid"
 import CategoryFilter from "Components/catetgoryFilter"
 
-const Blog = ({
+const Projects = ({
   pageContext,
   data,
 }: PageProps<Query, MarkdownRemarkFrontmatter>) => {
@@ -43,24 +43,24 @@ const Blog = ({
           category,
           thumbnail: childImageSharp?.id,
           alt,
+          url: (node.frontmatter! as any).url
         },
       ])
     })
   }, [currentCategory, postData])
 
   const site = useSiteMetadata()
-  const postTitle = currentCategory || site.postTitle
 
   return (
     <Layout>
-      <SEO title="Blog" />
+      <SEO title="Projects" />
       <Main>
         <Content>
-          <CategoryFilter categoryList={data.allMarkdownRemark.group} />
-          <PostTitle>Coming soon...</PostTitle>
-          {/* <PostGrid posts={posts} /> */}
+          <PostTitle>Personal Projects</PostTitle>
+          <PostGrid posts={posts} />
         </Content>
       </Main>
+
     </Layout>
   )
 }
@@ -99,7 +99,7 @@ const PostTitle = styled.h2`
 export const query = graphql`
   query {
     allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/(posts/blog)/" } }
+      filter: { fileAbsolutePath: { regex: "/projects/" } }
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
@@ -123,6 +123,7 @@ export const query = graphql`
               base
             }
             alt
+            url
           }
           fields {
             slug
@@ -133,4 +134,4 @@ export const query = graphql`
   }
 `
 
-export default Blog
+export default Projects

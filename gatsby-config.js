@@ -9,7 +9,7 @@ const siteMetadata = {
   utterances: {
     repo: meta.utterances,
   },
-  postTitle: "All",
+  postTitle: "All blogs",
   menuLinks: [
     {
       link: "/",
@@ -18,6 +18,10 @@ const siteMetadata = {
     {
       link: "/photos/",
       name: "Photos",
+    },
+    {
+      link: "/projects/",
+      name: "Projects",
     },
     {
       link: "/blog/",
@@ -60,6 +64,7 @@ const devPlugins = [
         Layouts: "src/layouts",
         Pages: "src/pages",
         Posts: "src/posts",
+        Projects: "src/projects",
         Stores: "src/stores",
         Styles: "src/styles",
         Templates: "src/templates",
