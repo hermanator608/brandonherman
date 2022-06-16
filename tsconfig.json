@@ -17,6 +17,8 @@
       "Layouts/*": ["src/layouts/*"],
       "Pages/*": ["src/pages/*"],
       "Posts/*": ["src/posts/*"],
+      "Jobs/*": ["src/jobs/*"],
+      "Projects/*": ["src/Projects/*"],
       "Stores/*": ["src/stores/*"],
       "Styles/*": ["src/styles/*"],
       "Templates/*": ["src/templates/*"],

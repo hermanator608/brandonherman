@@ -6,9 +6,18 @@ import type Post from "Types/Post"
 import Card from "./card"
 import useInfiniteScroll from "./useInfiniteScroll"
 import { ThumbnailWrapper } from "./card/centeredImg"
+import { Maybe } from "Types/GraphQL"
 
 interface PostGridProps {
   posts: Post[]
+}
+
+const ConditionalLink: React.FC<{url?: Maybe<string>, ariaLabel: string, slug?: Maybe<string>}> = ({url, ariaLabel, slug, children}) => {
+  if (!!url) {
+    return <a href={url} aria-label={ariaLabel} target='_blank'>{children}</a>;
+  } else {
+    return <Link to={url ?? slug ?? ""} aria-label={ariaLabel}>{children}</Link>
+  }
 }
 
 const PostGrid: React.FC<PostGridProps> = ({ posts }) => {
@@ -18,16 +27,17 @@ const PostGrid: React.FC<PostGridProps> = ({ posts }) => {
     scrollEdgeRef,
     maxPostNum: 10,
     offsetY: 200,
-  })
+  }) 
 
   return (
     <Grid role="list">
       {currentList.map(data => {
-        const { id, slug, title, desc, date, category, thumbnail, alt, url } = data
+        const { id, title, desc, date, category, thumbnail, alt, ...rest } = data
         const ariaLabel = `${title} - ${category} - Posted on ${date}`
+        
         return (
           <List key={id} role="listitem">
-            <Link to={url ?? slug ?? ""} aria-label={ariaLabel}>
+            <ConditionalLink ariaLabel={ariaLabel} {...rest}>
               <Card
                 thumbnail={thumbnail}
                 alt={alt}
@@ -36,7 +46,7 @@ const PostGrid: React.FC<PostGridProps> = ({ posts }) => {
                 desc={desc}
                 date={date}
               />
-            </Link>
+            </ConditionalLink>
           </List>
         )
       })}
@@ -45,7 +55,7 @@ const PostGrid: React.FC<PostGridProps> = ({ posts }) => {
   )
 }
 
-const Grid = styled.ul`
+export const Grid = styled.ul`
   display: grid;
   grid-gap: var(--grid-gap-xl);
   grid-template-columns: repeat(2, 1fr);

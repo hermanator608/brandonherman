@@ -63,6 +63,7 @@ const devPlugins = [
         Images: "src/images",
         Layouts: "src/layouts",
         Pages: "src/pages",
+        Jobs: "src/jobs",
         Posts: "src/posts",
         Projects: "src/projects",
         Stores: "src/stores",
