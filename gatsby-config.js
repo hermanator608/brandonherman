@@ -102,7 +102,7 @@ const markdownPlugins = [
           resolve: "gatsby-remark-vscode",
           options: {
             theme: {
-              default: "Github Dark Theme",
+              default: "Github Light Theme",
               parentSelector: {
                 "body[data-theme=dark]": "Dark Github",
               },
