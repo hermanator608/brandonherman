@@ -31,7 +31,7 @@ const Photos = ({
 
 export const pageQuery = graphql`
   query ImagesForGallery {
-    allFile(filter: {relativeDirectory: {eq: "images/photos"}}) {
+    allFile(filter: {relativeDirectory: {eq: "images/photos"}}, limit: 30) {
       edges {
         node {
           childImageSharp {
@@ -40,7 +40,7 @@ export const pageQuery = graphql`
               height: 270
               placeholder: TRACED_SVG
             )
-            full: gatsbyImageData(layout: FULL_WIDTH)
+            full: gatsbyImageData(layout: FIXED)
           }
         }
       }

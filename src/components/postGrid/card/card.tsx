@@ -79,12 +79,13 @@ const Desc = styled.p`
   margin-top: 8px;
   padding-bottom: var(--sizing-sm);
   color: var(--color-text-2);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  word-break: break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  # These hide extra text. Commenting out for now
+  #display: -webkit-box;
+  #-webkit-line-clamp: 2;
+  #-webkit-box-orient: vertical;
+  # word-break: break-word;
+  # overflow: hidden;
+  # text-overflow: ellipsis;
 `
 
 export default React.memo(Card)

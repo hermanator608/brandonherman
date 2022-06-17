@@ -67,6 +67,8 @@ export const Grid = styled.ul`
 
   @media (max-width: ${({ theme }) => theme.device.sm}) {
     grid-gap: var(--grid-gap-lg);
+
+    grid-template-columns: 1fr;
   }
 `
 

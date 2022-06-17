@@ -30,13 +30,14 @@ exports.onRenderBody = ({ setPreBodyComponents }) => {
               } catch (err) {}
             }
 
-            let darkQuery = window.matchMedia('(prefers-color-scheme: dark)')
+            // let lightQuery = window.matchMedia('(prefers-color-scheme: light)')
+            // console.log(lightQuery);
 
-            darkQuery.addEventListener('change', e => {
-              window.__setPreferredTheme(e.matches ? 'dark' : 'light')
-            })
+            // lightQuery.addEventListener('change', e => {
+            //   window.__setPreferredTheme(e.matches ? 'light' : 'dark')
+            // })
 
-            setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
+            setTheme(preferredTheme || 'dark')//(lightQuery.matches ? 'light' : 'dark'))
           })()
         `,
       },

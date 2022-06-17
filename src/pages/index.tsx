@@ -12,11 +12,13 @@ import { Content, PostTitle } from "Components/common"
 import Card from "Components/postGrid/card"
 import PostGrid from "Components/postGrid"
 import { Grid } from "Components/postGrid/postGrid"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 type QueryResult = {
   aboutInfo: Query['allMarkdownRemark']
   jobs: Query['allMarkdownRemark']
   msoeIcon: Query['file']
+  profilePic: Query['file']
 }
 
 const About = () => {
@@ -27,6 +29,16 @@ const About = () => {
           node {
             html
           }
+        }
+      }
+
+      profilePic: file(absolutePath: {regex: "/profilepic2.jpg/"}) {
+        childImageSharp {
+          id
+          gatsbyImageData(
+              layout: CONSTRAINED
+              placeholder: TRACED_SVG
+            )
         }
       }
 
@@ -106,10 +118,13 @@ const About = () => {
   return (
     <Layout>
       <SEO title="About" />
-      <Container
-        dangerouslySetInnerHTML={{ __html: markdown ?? "" }}
-        rhythm={rhythm}
-      />
+      <AboutContainer>
+        <GatsbyImage image={data.profilePic?.childImageSharp?.gatsbyImageData} loading="eager" alt={'Profile Pic'} />
+        <Container
+          dangerouslySetInnerHTML={{ __html: markdown ?? "" }}
+          rhythm={rhythm}
+        />
+      </AboutContainer>
       <Content>
         <PostTitle>Work Experience</PostTitle>
         <PostGrid posts={jobs} />
@@ -131,18 +146,25 @@ const About = () => {
   )
 }
 
-const Container = styled(Markdown).attrs({
-  as: "main",
-})`
+const AboutContainer = styled.main`
   width: var(--post-width);
   margin: 0 auto;
   margin-top: 80px;
   margin-bottom: 6rem;
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  grid-column-gap: 1em;
 
   @media (max-width: ${({ theme }) => theme.device.sm}) {
     margin-top: var(--sizing-xl);
     width: 87.5%;
+    margin-bottom: 3rem;
   }
+`
+
+const Container = styled(Markdown).attrs({
+  as: "div",
+})`
 
   h1 {
     margin-bottom: 2rem;
